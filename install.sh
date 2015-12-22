@@ -48,7 +48,8 @@ mv phpunit.phar /usr/local/bin/phpunit
 
 # Install pear
 echo "============ Installing PHP-PEAR ============="
-apt-get install php-pear
+wget http://pear.php.net/go-pear.phar
+php go-pear.phar
 
 # Activate phpenv
 export PATH=$HOME/.phpenv/bin:$PATH
