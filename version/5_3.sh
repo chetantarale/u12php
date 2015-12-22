@@ -15,6 +15,10 @@ curl -s http://getcomposer.org/installer | php
 chmod +x composer.phar
 mv composer.phar /usr/local/bin/composer
 
+echo 'PEAR location - 5.3.sh'
+pear config-show
+pear config-set php_dir $HOME/.phpenv/versions/5.3.29
+
 # Install php extensions
 echo "=========== Installing PHP extensions =============="
 printf '\n' | pecl install memcache
