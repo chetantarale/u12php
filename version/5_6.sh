@@ -17,9 +17,9 @@ mv composer.phar /usr/local/bin/composer
 
 # Install php extensions
 echo "=========== Installing PHP extensions =============="
-printf '\n' | pecl install memcache
-printf '\n' | pecl install memcached
-printf '\n' | pecl install mongo
-printf '\n' | pecl install amqp
-printf '\n' | pecl install zmq-beta
-printf '\n' | pecl install redis
+#printf '\n' | pecl install memcache
+#printf '\n' | pecl install memcached
+#printf '\n' | pecl install mongo
+#printf '\n' | pecl install amqp
+#printf '\n' | pecl install zmq-beta
+#printf '\n' | pecl install redis
