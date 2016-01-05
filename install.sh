@@ -1,23 +1,22 @@
 #!/bin/bash -e
 
-sudo apt-get clean
-sudo mv /var/lib/apt/lists /tmp
-sudo mkdir -p /var/lib/apt/lists/partial
-sudo apt-get clean
-sudo apt-get update
+#sudo apt-get clean
+#sudo mv /var/lib/apt/lists /tmp
+#sudo mkdir -p /var/lib/apt/lists/partial
+#sudo apt-get clean
+#sudo apt-get update
 
 # Install dependencies
 echo "=========== Installing dependencies ============"
 apt-get update
 apt-get install -y git wget cmake libmcrypt-dev libreadline-dev libzmq-dev
 apt-get build-dep -y php5-cli
+apt-get install php5-dev
 
 # Install libmemcached
 echo "========== Installing libmemcached =========="
 wget https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz
 tar xzf libmemcached-1.0.18.tar.gz && cd libmemcached-1.0.18
-echo 'line 19 install - pwd'
-pwd
 ./configure --enable-sasl
 make && make install
 cd .. && rm -fr libmemcached-1.0.18*
@@ -26,12 +25,8 @@ cd .. && rm -fr libmemcached-1.0.18*
 echo "============ Installing phpenv ============="
 git clone git://github.com/CHH/phpenv.git $HOME/phpenv
 $HOME/phpenv/bin/phpenv-install.sh
-echo 'Line 29 -> export PATH=$HOME/.phpenv/bin:$PATH'
 echo 'export PATH=$HOME/.phpenv/bin:$PATH' >> $HOME/.bashrc
 echo 'eval "$(phpenv init -)"' >> $HOME/.bashrc
-echo '<----BASHRC START --->'
-cat $HOME/.bashrc
-echo '<----BASHRC END --->'
 rm -rf $HOME/phpenv
 
 # Install php-build
@@ -46,15 +41,29 @@ wget https://phar.phpunit.de/phpunit.phar
 chmod +x phpunit.phar
 mv phpunit.phar /usr/local/bin/phpunit
 
-# Install pear
-echo "============ Installing PHP-PEAR ============="
-wget http://pear.php.net/go-pear.phar
-php go-pear.phar
-
 # Activate phpenv
 export PATH=$HOME/.phpenv/bin:$PATH
 echo " 51 PATH=$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
+
+#Download pickle 
+git clone https://github.com/FriendsOfPHP/pickle.git /tmp/pickle
+
+# Install librabbitmq
+echo "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+cd /tmp && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.7.1/rabbitmq-c-0.7.1.tar.gz
+tar xzf rabbitmq-c-0.7.1.tar.gz
+mkdir build && cd build
+cmake /tmp/rabbitmq-c-0.7.1
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local /tmp/rabbitmq-c-0.7.1
+cmake --build . --target install
+cd /tmp/rabbitmq-c-0.7.1
+autoreconf -i
+./configure
+make
+make install
+cd /
+echo "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
 
 for file in /u12php/version/*;
 do
