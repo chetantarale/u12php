@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-#sudo apt-get clean
-#sudo mv /var/lib/apt/lists /tmp
-#sudo mkdir -p /var/lib/apt/lists/partial
-#sudo apt-get clean
-#sudo apt-get update
+sudo apt-get clean
+sudo mv /var/lib/apt/lists /tmp
+sudo mkdir -p /var/lib/apt/lists/partial
+sudo apt-get clean
+sudo apt-get update
 
 # Install dependencies
 echo "=========== Installing dependencies ============"
@@ -50,7 +50,7 @@ eval "$(phpenv init -)"
 git clone https://github.com/FriendsOfPHP/pickle.git /tmp/pickle
 
 # Install librabbitmq
-echo "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+echo "============ Installing librabbitmq ============"
 cd /tmp && wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.7.1/rabbitmq-c-0.7.1.tar.gz
 tar xzf rabbitmq-c-0.7.1.tar.gz
 mkdir build && cd build
@@ -63,7 +63,7 @@ autoreconf -i
 make
 make install
 cd /
-echo "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+echo "============ librabbitmq installation completed ============"
 
 for file in /u12php/version/*;
 do
