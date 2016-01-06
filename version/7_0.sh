@@ -17,14 +17,9 @@ mv composer.phar $HOME/.phpenv/versions/7.0/bin
 
 #install pickle
 cd /tmp/pickle
+echo '<---------------- Composer in 7.0 ---------------------------------->'
+which composer
+echo '<---------------- Composer in 7.0 ---------------------------------->'
 composer install
-
-# Install php extensions
-echo "=========== Installing PHP extensions =============="
-printf '\n' | bin/pickle install memcache
-printf '\n' | bin/pickle install memcached
-printf '\n' | bin/pickle install mongo
-printf '\n' | bin/pickle install zmq-beta
-printf '\n' | bin/pickle install redis
 
 cd /
