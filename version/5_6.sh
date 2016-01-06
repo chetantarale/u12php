@@ -22,13 +22,4 @@ which composer
 echo '<---------------- Composer in 5.6 ---------------------------------->'
 composer install
 
-# Install php extensions
-echo "=========== Installing PHP extensions =============="
-printf '\n' | bin/pickle install memcache
-printf '\n' | bin/pickle install memcached
-printf '\n' | bin/pickle install mongo
-printf '\n' | bin/pickle install amqp-1.6.0
-printf '\n' | bin/pickle install zmq-beta
-printf '\n' | bin/pickle install redis
-
 cd /
