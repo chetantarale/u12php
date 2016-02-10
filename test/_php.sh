@@ -10,8 +10,8 @@ declare -a versions=('5.4' '5.5' '5.6' '7.0')
 for version in "${versions[@]}"
   do
     echo "=============== Switching to version $version  ======================"
-    echo "phpenv local $version"
-    $HOME/.phpenv/bin/phpenv local $version
+    echo "phpenv global $version"
+    $HOME/.phpenv/bin/phpenv global $version
     printf "\n"
 
     echo "======================== Checking version = ========================="
